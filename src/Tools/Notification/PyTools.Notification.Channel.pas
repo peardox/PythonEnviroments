@@ -207,8 +207,11 @@ uses
   System.Rtti,
   PyTools.Exception;
 
+{$IFDEF VER340}
 type
   //For backward compatibility
+  TCustomAttributeClass = class of TCustomAttribute;
+
   TRttiObjectHelper = class helper for TRttiObject
   public
     function GetAttribute(AAttrClass: TCustomAttributeClass): TCustomAttribute; overload;
@@ -232,6 +235,7 @@ function TRttiObjectHelper.GetAttribute<T>: T;
 begin
   Result := T(GetAttribute(T));
 end;
+{$ENDIF}
 
 { RequestChannelAttribute }
 
